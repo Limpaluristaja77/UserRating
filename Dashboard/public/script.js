@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dashboard = document.getElementById('dashboard');
   const subjectSelect = document.getElementById('subject');
 
+  // Laeb õppeained <select> sisse
   async function loadSubjects() {
     const res = await fetch('/api/subjects');
     const subjects = await res.json();
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Laeb dashboardi andmed
   async function loadDashboard() {
     const res = await fetch('/api/dashboard');
     const data = await res.json();
@@ -29,14 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('div');
       card.className = 'col-md-4';
 
+      // Kommentaarid kuvatakse igaüks oma reaga, koos nimega (või "Anonüümne")
+      const commentList = (entry.comments || '')
+        .split(' ||| ')
+        .map(c => `• ${c}`)
+        .join('<br>');
+
       card.innerHTML = `
         <div class="card shadow-sm">
           <div class="card-body">
             <h5 class="card-title">${entry.subject}</h5>
             <p><strong>Keskmine hinne:</strong> ${entry.average_rating}</p>
-            <p><strong>Kommentaarid:</strong><br>
-              ${(entry.comments || '').split(' ||| ').map(c => `• ${c}`).join('<br>')}
-            </p>
+            <p><strong>Kommentaarid:</strong><br>${commentList}</p>
           </div>
         </div>
       `;
@@ -44,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Vormis tagasiside esitamine
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -78,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Alglaadimine
   loadSubjects();
   loadDashboard();
-
 });

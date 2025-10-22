@@ -31,7 +31,7 @@ router.get('/dashboard', (req, res) => {
     SELECT 
       s.name AS subject,
       ROUND(AVG(f.rating), 2) AS average_rating,
-      GROUP_CONCAT(f.comment, ' ||| ') AS comments
+      GROUP_CONCAT(f.comment || ' - ' || IFNULL(f.student_name, 'Anonüümne'), ' ||| ') AS comments
     FROM feedback f
     JOIN subjects s ON f.subject_id = s.id
     GROUP BY f.subject_id
@@ -43,5 +43,6 @@ router.get('/dashboard', (req, res) => {
     res.json(rows);
   });
 });
+
 
 module.exports = router;
