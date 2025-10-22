@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tagasiside Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <h1 class="mb-4">Tagasiside õppeainetele</h1>
+
+    <div class="card mb-5">
+      <div class="card-body">
+        <form id="feedbackForm">
+          <div class="mb-3">
+            <label for="subject" class="form-label">Õppeaine</label>
+            <select class="form-select" id="subject" required>
+              <option value="">Laen aineid...</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="studentName" class="form-label">Sinu nimi</label>
+            <input type="text" class="form-control" id="studentName" placeholder="Valikuline" />
+          </div>
+          <div class="mb-3">
+            <label for="rating" class="form-label">Hinne (0–5)</label>
+            <select class="form-select" id="rating" required>
+              <option value="">Vali hinne</option>
+              <option value="0">0 - Halb</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - Väga hea</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="feedbackType" class="form-label">Tagasiside tüüp</label>
+            <select class="form-select" id="feedbackType">
+              <option value="õppeaine">Õppeaine</option>
+              <option value="õpetaja">Õpetaja</option>
+              <option value="õppekava">Õppekava</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="comment" class="form-label">Kommentaar</label>
+            <textarea class="form-control" id="comment" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Saada tagasiside</button>
+        </form>
+      </div>
+    </div>
+
+    <h2 class="mb-3">Dashboard</h2>
+    <div id="dashboard" class="row g-3"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

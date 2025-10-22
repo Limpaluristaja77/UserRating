@@ -1,5 +1,13 @@
 {
+  "name": "feedback-dashboard",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "init-db": "node init-db.js"
+  },
   "dependencies": {
-    "sqlite3": "^5.1.7"
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6"
   }
 }
